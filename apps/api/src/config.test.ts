@@ -9,6 +9,7 @@ describe('loadConfig', () => {
       version: '0.1.0',
       databaseUrl: 'file:local.db',
       databaseAuthToken: undefined,
+      seedIfEmpty: false,
     });
   });
 
@@ -27,6 +28,11 @@ describe('loadConfig', () => {
 
     expect(config.databaseUrl).toBe('libsql://db.turso.io');
     expect(config.databaseAuthToken).toBe('secret');
+  });
+
+  it('turns on first-boot seeding only when SEED_IF_EMPTY is "true"', () => {
+    expect(loadConfig({ SEED_IF_EMPTY: 'true' }).seedIfEmpty).toBe(true);
+    expect(loadConfig({ SEED_IF_EMPTY: 'false' }).seedIfEmpty).toBe(false);
   });
 
   it('rejects a PORT that is not a number', () => {

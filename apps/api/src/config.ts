@@ -6,6 +6,7 @@ const envSchema = z.object({
   APP_VERSION: z.string().default('0.1.0'),
   DATABASE_URL: z.string().min(1).default('file:local.db'),
   DATABASE_AUTH_TOKEN: z.string().min(1).optional(),
+  SEED_IF_EMPTY: z.enum(['true', 'false']).default('false'),
 });
 
 export interface AppConfig {
@@ -14,6 +15,8 @@ export interface AppConfig {
   version: string;
   databaseUrl: string;
   databaseAuthToken: string | undefined;
+  /** Seed 10,000 employees on startup when the table is empty (first deploy). */
+  seedIfEmpty: boolean;
 }
 
 /** Reads and validates environment variables once, at startup. */
@@ -29,5 +32,6 @@ export function loadConfig(env: Record<string, string | undefined>): AppConfig {
     version: parsed.data.APP_VERSION,
     databaseUrl: parsed.data.DATABASE_URL,
     databaseAuthToken: parsed.data.DATABASE_AUTH_TOKEN,
+    seedIfEmpty: parsed.data.SEED_IF_EMPTY === 'true',
   };
 }
