@@ -32,7 +32,7 @@ In Render → `salary-api` → **Environment**, set `CORS_ORIGIN` to the Vercel 
 
 ## 4. Database on Turso (needed from Day 1 afternoon)
 
-1. Sign up at [Turso](https://turso.tech) and create a database (for example `salary-management`) in the region closest to the Render region (Singapore → `aws-ap-south-1` Mumbai or nearest offered).
+1. Sign up at [Turso](https://turso.tech) and create a database (for example `salary-management`) in the region closest to the Render region (the blueprint uses Singapore).
 2. Copy the database URL (`libsql://...`) and create a database token.
 3. In Render → **Environment**, add `DATABASE_URL` and `DATABASE_AUTH_TOKEN`.
 4. Migrations and the 10,000-employee seed are run against Turso with `pnpm --filter @salary/api db:migrate` and `db:seed` (added with the database layer).
