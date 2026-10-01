@@ -1,0 +1,17 @@
+# Render Blueprint for the API (free web service).
+# The free plan has no persistent disk, so data lives in Turso (hosted SQLite).
+services:
+  - type: web
+    name: salary-api
+    runtime: node
+    plan: free
+    region: singapore
+    buildCommand: npx pnpm@10.34.6 install --frozen-lockfile --prod=false && npx pnpm@10.34.6 --filter @salary/api build
+    startCommand: node apps/api/dist/server.js
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: '22'
+      - key: CORS_ORIGIN
+        sync: false
