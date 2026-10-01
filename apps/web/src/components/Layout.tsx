@@ -35,7 +35,7 @@ export function Layout({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen">
       <header className="border-b border-line bg-surface">
-        <div className="mx-auto flex h-16 max-w-[1280px] items-center gap-8 px-4 sm:px-8">
+        <div className="mx-auto flex h-16 max-w-[1280px] items-center gap-4 px-4 sm:gap-8 sm:px-8">
           <div className="flex items-center gap-2.5">
             <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
               <rect x="1" y="1" width="26" height="26" rx="7" fill="#1E3A8A" />
@@ -48,7 +48,8 @@ export function Layout({ children }: { children: ReactNode }) {
               />
             </svg>
             <div className="text-[15px] font-semibold">
-              ACME <span className="font-medium text-muted">Salary Management</span>
+              ACME{' '}
+              <span className="hidden font-medium text-muted sm:inline">Salary Management</span>
             </div>
           </div>
           <nav aria-label="Main" className="flex h-full gap-1">
