@@ -25,5 +25,5 @@ pnpm --filter @salary/api exec vitest run src/performance.test.ts   # 10,000-row
 - **Fresh database per test file:** `createTestDb()` makes a migrated SQLite file in a temp folder. Tests never share state.
 - **Fixed clock:** the app takes a `clock` function; tests pass `2026-10-01T09:00:00Z`, so "today" never changes.
 - **Seeded random data:** the generator uses a seeded PRNG, so the same seed always gives the same 10,000 employees.
-- **No network:** the web tests stub `fetch`; the API tests call Express in-process.
+- **No network:** the web tests replace `fetch` with a small in-memory router (`apps/web/src/test/mock-api.ts`) that also records every call; the API tests call Express in-process.
 - **Names describe behaviour:** `refuses a hire date in the future`, not `test create 3`.

@@ -257,6 +257,13 @@ If a phase overruns, cut chart polish first; tests, the seed, deployment and the
 
 **After submission (product phase, Day 3 onward):** development, database, API and user guides; Playwright end-to-end tests; then the roadmap items in Scope, starting with CSV/Excel import.
 
+## Changes made during the build
+
+- **No pre-commit hooks:** CI runs the same checks on every push.
+- **Previous major versions** of TypeScript, Vite, ESLint and Vitest instead of the newest releases.
+- **Frontend libraries trimmed:** shadcn-style primitives written in the repo, CSS bars instead of Recharts, a plain table instead of TanStack Table. The screens need server-side paging and simple bars, so the extra libraries added risk without benefit.
+- **First-boot seeding** (`SEED_IF_EMPTY`) so the deployed demo always has 10,000 employees.
+
 ## Risks and assumptions
 
 The biggest risk is scope creep against a 2-day deadline; the fallback is to cut polish, never tests or docs.
