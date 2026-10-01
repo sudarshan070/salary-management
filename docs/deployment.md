@@ -23,12 +23,12 @@ What the blueprint does: installs with pnpm, bundles the API with esbuild (`apps
 
 1. Sign in to [Vercel](https://vercel.com) with GitHub, **Add New → Project**, import this repository.
 2. Set **Root Directory** to `apps/web`. Vercel detects Vite and pnpm; `apps/web/vercel.json` sets the build and SPA routing.
-3. Add the environment variable `VITE_API_URL` = the Render URL from step 1 (no trailing slash).
+3. Add the environment variable `VITE_API_URL` = the Render URL from step 1 (no trailing slash), for Production. **Required:** without it the app calls Vercel itself and shows a configuration banner. Vite bakes the value in at build time, so after adding or changing it, **Redeploy** (Deployments → ⋯ → Redeploy).
 4. Deploy. The home page should say "API is up (v0.1.0)".
 
 ## 3. Lock down CORS
 
-In Render → `salary-api` → **Environment**, set `CORS_ORIGIN` to the Vercel URL (for example `https://salary-management.vercel.app`) and save. Render redeploys automatically.
+In Render → `salary-api` → **Environment**, set `CORS_ORIGIN` to the Vercel URL (`https://e-salary-management.vercel.app`, no trailing slash) and save. Render redeploys automatically.
 
 ## 4. Database on Turso (needed from Day 1 afternoon)
 
@@ -39,14 +39,14 @@ In Render → `salary-api` → **Environment**, set `CORS_ORIGIN` to the Vercel 
 
 ## Environment variables
 
-| Variable              | Where              | Example                                    | Purpose                                |
-| --------------------- | ------------------ | ------------------------------------------ | -------------------------------------- |
-| `PORT`                | Render (automatic) | `10000`                                    | Port the API listens on                |
-| `CORS_ORIGIN`         | Render             | `https://salary-management.vercel.app`     | Browser origin allowed to call the API |
-| `APP_VERSION`         | Render (optional)  | `0.1.0`                                    | Shown by `/health`                     |
-| `DATABASE_URL`        | Render             | `libsql://salary-management-acme.turso.io` | Turso database                         |
-| `DATABASE_AUTH_TOKEN` | Render             | (secret)                                   | Turso access token                     |
-| `VITE_API_URL`        | Vercel             | `https://salary-api.onrender.com`          | API base URL baked into the web build  |
+| Variable              | Where              | Example                                    | Purpose                                                        |
+| --------------------- | ------------------ | ------------------------------------------ | -------------------------------------------------------------- |
+| `PORT`                | Render (automatic) | `10000`                                    | Port the API listens on                                        |
+| `CORS_ORIGIN`         | Render             | `https://salary-management.vercel.app`     | Browser origin allowed to call the API                         |
+| `APP_VERSION`         | Render (optional)  | `0.1.0`                                    | Shown by `/health`                                             |
+| `DATABASE_URL`        | Render             | `libsql://salary-management-acme.turso.io` | Turso database                                                 |
+| `DATABASE_AUTH_TOKEN` | Render             | (secret)                                   | Turso access token                                             |
+| `VITE_API_URL`        | Vercel             | `https://salary-api-vdsd.onrender.com`     | API base URL baked into the web build; redeploy after changing |
 
 ## Rollback
 
