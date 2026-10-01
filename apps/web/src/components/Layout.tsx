@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { clsx } from 'clsx';
 import { useEffect, useState, type ReactNode } from 'react';
 import { NavLink } from 'react-router';
-import { fetchHealth } from '../lib/api';
+import { API_URL, fetchHealth } from '../lib/api';
 
 /** Free Render instances sleep when idle; tell people why the first load is slow. */
 function useApiStatus() {
@@ -78,7 +78,17 @@ export function Layout({ children }: { children: ReactNode }) {
         </div>
       </header>
 
-      {status === 'down' || (status === 'connecting' && slow) ? (
+      {import.meta.env.PROD && !API_URL ? (
+        <div
+          role="alert"
+          className="border-b border-[#f3c7c3] bg-[#fdf2f1] text-[13px] text-[#7a1a12]"
+        >
+          <div className="mx-auto max-w-[1280px] px-4 py-2.5 sm:px-8">
+            Configuration error: this build has no VITE_API_URL, so it cannot reach the API. Set it
+            in the hosting settings and redeploy (see docs/deployment.md).
+          </div>
+        </div>
+      ) : status === 'down' || (status === 'connecting' && slow) ? (
         <div
           role="alert"
           className="border-b border-[#f5d9b8] bg-[#fdf3e7] text-[13px] text-[#7c3a0a]"

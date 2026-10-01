@@ -54,7 +54,18 @@ async function request<T extends z.ZodType>(
     }
     throw new ApiRequestError(res.status, 'HTTP_ERROR', `Request failed with ${res.status}`);
   }
-  return (schema ? schema.parse(body) : undefined) as z.infer<T>;
+  if (!schema) return undefined as z.infer<T>;
+  const parsed = schema.safeParse(body);
+  if (!parsed.success) {
+    throw new ApiRequestError(
+      res.status,
+      'BAD_RESPONSE',
+      API_URL
+        ? 'The API sent an unexpected response.'
+        : 'The API sent an unexpected response. Is VITE_API_URL set for this build?',
+    );
+  }
+  return parsed.data;
 }
 
 function queryString(params: Record<string, string | number | undefined>): string {
