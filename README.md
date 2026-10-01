@@ -4,11 +4,11 @@ A web tool for ACME's HR Manager to manage salary data for 10,000 employees acro
 
 Built for the Incubyte Software Craftsperson assessment.
 
-|                |                                                                                                        |
-| -------------- | ------------------------------------------------------------------------------------------------------ |
-| **Live app**   | https://e-salary-management.vercel.app                                                                 |
-| **API**        | https://salary-api-vdsd.onrender.com/health (interactive docs at `/docs` once the employees API lands) |
-| **Demo video** | _coming on Day 2_                                                                                      |
+|                |                                                        |
+| -------------- | ------------------------------------------------------ |
+| **Live app**   | https://e-salary-management.vercel.app                 |
+| **API docs**   | https://salary-api-vdsd.onrender.com/docs (Swagger UI) |
+| **Demo video** | _coming on Day 2_                                      |
 
 > The API runs on a free Render instance that sleeps when idle. The first request after a pause can take about a minute.
 
