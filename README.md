@@ -43,4 +43,7 @@ docs/            requirements, plan, ADRs, guides
 | [AI usage](docs/ai-usage.md)                 | How AI tools were used and what was accepted or changed                  |
 | [Agent instructions](CLAUDE.md)              | Standing rules given to AI coding agents                                 |
 
-Architecture, testing and performance docs are added as those parts are built.
+| [Testing](docs/testing.md) | Test levels, how to run them, determinism rules |
+| [Performance](docs/performance.md) | Measured timings at 10,000 rows, indexes, known limits |
+
+The architecture guide is added with the frontend.
