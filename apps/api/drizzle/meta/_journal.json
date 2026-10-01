@@ -1,0 +1,13 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1790855982179,
+      "tag": "0000_create_employees",
+      "breakpoints": true
+    }
+  ]
+}
