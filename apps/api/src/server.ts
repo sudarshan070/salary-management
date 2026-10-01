@@ -1,8 +1,12 @@
+import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { createApp } from './app';
 import { loadConfig } from './config';
 import { createDb, runMigrations } from './db/client';
 import { seedIfEmpty } from './seed/seed-if-empty';
+
+// Local development: pick up apps/api/.env when it exists (hosts set real env vars).
+if (existsSync('.env')) process.loadEnvFile('.env');
 
 const config = loadConfig(process.env);
 const db = createDb({ url: config.databaseUrl, authToken: config.databaseAuthToken });
