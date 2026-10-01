@@ -57,4 +57,17 @@ describe('api client', () => {
 
     expect(error).toMatchObject({ status: 0, code: 'NETWORK_ERROR' });
   });
+
+  it('reports an HTML page instead of JSON (for example a missing VITE_API_URL) as BAD_RESPONSE', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async () => new Response('<!doctype html><html></html>', { status: 200 })),
+    );
+
+    const error = await listEmployees({ page: 1, pageSize: 25, sort: 'fullName' }).catch(
+      (e: unknown) => e,
+    );
+
+    expect(error).toMatchObject({ code: 'BAD_RESPONSE' });
+  });
 });
