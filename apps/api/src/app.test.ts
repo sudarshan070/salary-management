@@ -1,9 +1,13 @@
 import request from 'supertest';
-import { describe, expect, it } from 'vitest';
-import { createApp } from './app';
+import type { Express } from 'express';
+import { beforeAll, describe, expect, it } from 'vitest';
+import { createTestApp } from './test/test-app';
 
 describe('API app', () => {
-  const app = createApp({ corsOrigin: '*', version: 'test' });
+  let app: Express;
+  beforeAll(async () => {
+    ({ app } = await createTestApp());
+  });
 
   it('reports healthy on GET /health', async () => {
     const res = await request(app).get('/health');
