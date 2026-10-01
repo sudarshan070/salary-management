@@ -45,5 +45,3 @@ docs/            requirements, plan, ADRs, guides
 
 | [Testing](docs/testing.md) | Test levels, how to run them, determinism rules |
 | [Performance](docs/performance.md) | Measured timings at 10,000 rows, indexes, known limits |
-
-The architecture guide is added with the frontend.
