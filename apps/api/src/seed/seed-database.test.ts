@@ -1,3 +1,4 @@
+import { currencyForCountry, type CountryCode } from '@salary/shared';
 import { count, eq } from 'drizzle-orm';
 import { describe, expect, it } from 'vitest';
 import { employees } from '../db/schema';
@@ -18,7 +19,7 @@ describe('seedDatabase', () => {
     expect(total?.n).toBe(1_200);
     const first = await db.query.employees.findFirst({ where: eq(employees.id, 1) });
     expect(first?.employeeCode).toBe('EMP-000001');
-    expect(first?.currency).toBe(first?.countryCode === 'IN' ? 'INR' : first?.currency);
+    expect(first?.currency).toBe(currencyForCountry(first?.countryCode as CountryCode));
     expect(first?.createdAt).toBe(NOW);
   });
 
