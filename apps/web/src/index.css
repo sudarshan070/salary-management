@@ -1,0 +1,38 @@
+@import 'tailwindcss';
+
+/* Design tokens from the approved mockups (Salary Management UI canvas). */
+@theme {
+  --font-sans: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --color-ground: #f4f5f7;
+  --color-surface: #ffffff;
+  --color-subtle: #f8f9fb;
+  --color-chip: #f1f3f6;
+  --color-line: #e1e4e8;
+  --color-line-soft: #eef0f3;
+  --color-control: #cdd2d9;
+  --color-ink: #15181d;
+  --color-ink-2: #3d4450;
+  --color-muted: #5b6370;
+  --color-faint: #9aa1ac;
+
+  --color-brand: #1e3a8a;
+  --color-brand-soft: #eef2fc;
+  --color-bar: #2f4fb8;
+  --color-range: #c9d4f2;
+  --color-median: #c2410c;
+  --color-danger: #b42318;
+  --color-ok: #15803d;
+}
+
+@layer base {
+  body {
+    @apply bg-ground text-ink font-sans text-sm antialiased;
+    font-variant-numeric: tabular-nums;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+  }
+}

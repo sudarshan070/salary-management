@@ -1,8 +1,9 @@
+import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), tailwindcss()],
   server: {
     // Local dev: forward API calls to the Express server so no CORS setup is needed.
     proxy: { '/health': 'http://localhost:3000', '/api': 'http://localhost:3000' },
