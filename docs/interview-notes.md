@@ -33,7 +33,7 @@ ACME's HR Manager runs salaries for 10,000 people in 10 countries out of spreads
 
 ## 5. Testing
 
-- 102 tests in a few seconds. Unit tests cover rules and formatting, integration tests cover real HTTP against a real migrated SQLite file, and component tests cover what the HR Manager sees.
+- 103 tests in a few seconds. Unit tests cover rules and formatting, integration tests cover real HTTP against a real migrated SQLite file, and component tests cover what the HR Manager sees.
 - Determinism: a fresh database per test file, an injected clock, a seeded PRNG, and no network. The web tests use a small fetch router that records every call.
 - The performance test seeds 10,000 rows and fails the build if any list or insight endpoint exceeds 200 ms. The measured range is 8–52 ms.
 

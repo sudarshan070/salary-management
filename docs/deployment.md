@@ -35,7 +35,9 @@ In Render → `salary-api` → **Environment**, set `CORS_ORIGIN` to the Vercel 
 1. Sign up at [Turso](https://turso.tech) and create a database (for example `salary-management`) in the region closest to the Render region (the blueprint uses Singapore).
 2. Copy the database URL (`libsql://...`) and create a database token.
 3. In Render → **Environment**, add `DATABASE_URL` and `DATABASE_AUTH_TOKEN`.
-4. Migrations and the 10,000-employee seed are run against Turso with `pnpm --filter @salary/api db:migrate` and `db:seed` (added with the database layer).
+4. On its first start the API runs the migrations and, with `SEED_IF_EMPTY=true` (set in `render.yaml`), seeds the 10,000 employees into the empty Turso database. Nothing to run by hand.
+
+To work against Turso from your machine, keep its credentials in `apps/api/.env.turso` (git-ignored) and pass the file explicitly, for example `cd apps/api && node --env-file=.env.turso --import tsx src/scripts/seed.ts`. Keep them out of `apps/api/.env`: that file is loaded by `pnpm dev`, and local development should never write to production data.
 
 ## Environment variables
 
