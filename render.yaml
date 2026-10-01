@@ -15,3 +15,10 @@ services:
         value: '22'
       - key: CORS_ORIGIN
         sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: DATABASE_AUTH_TOKEN
+        sync: false
+      # First boot on an empty Turso database seeds the 10,000 demo employees.
+      - key: SEED_IF_EMPTY
+        value: 'true'
