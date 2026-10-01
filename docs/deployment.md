@@ -37,7 +37,7 @@ In Render → `salary-api` → **Environment**, set `CORS_ORIGIN` to the Vercel 
 3. In Render → **Environment**, add `DATABASE_URL` and `DATABASE_AUTH_TOKEN`.
 4. On its first start the API runs the migrations and, with `SEED_IF_EMPTY=true` (set in `render.yaml`), seeds the 10,000 employees into the empty Turso database. Nothing to run by hand.
 
-To work against Turso from your machine, keep its credentials in `apps/api/.env.turso` (git-ignored) and pass the file explicitly, for example `cd apps/api && node --env-file=.env.turso --import tsx src/scripts/seed.ts`. Keep them out of `apps/api/.env`: that file is loaded by `pnpm dev`, and local development should never write to production data.
+To work against Turso from your machine, keep its credentials in `apps/api/.env.turso` (git-ignored) and pass the file explicitly, for example `cd apps/api && node --env-file=.env.turso --import tsx src/scripts/migrate.ts` (the seed script replaces all employees, so run it against Turso only on purpose). Keep them out of `apps/api/.env`: that file is loaded by `pnpm dev`, and local development should never write to production data.
 
 ## Environment variables
 
