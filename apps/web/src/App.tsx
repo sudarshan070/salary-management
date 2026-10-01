@@ -1,31 +1,24 @@
-import { useEffect, useState } from 'react';
-import { fetchHealth } from './lib/api';
-
-type ApiStatus = { kind: 'checking' } | { kind: 'up'; version: string } | { kind: 'down' };
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router';
+import { Layout } from './components/Layout';
+import { EmployeesPage } from './features/employees/EmployeesPage';
+import { InsightsPage } from './features/insights/InsightsPage';
 
 export function App() {
-  const [status, setStatus] = useState<ApiStatus>({ kind: 'checking' });
-
-  useEffect(() => {
-    let active = true;
-    fetchHealth()
-      .then((health) => active && setStatus({ kind: 'up', version: health.version }))
-      .catch(() => active && setStatus({ kind: 'down' }));
-    return () => {
-      active = false;
-    };
-  }, []);
-
+  const [client] = useState(
+    () => new QueryClient({ defaultOptions: { queries: { staleTime: 30_000, retry: 2 } } }),
+  );
   return (
-    <main style={{ fontFamily: 'system-ui, sans-serif', padding: '2rem' }}>
-      <h1>Salary Management</h1>
-      <p>Manage ACME employee salaries and see how the organisation pays people.</p>
-      <p role="status">
-        {status.kind === 'checking' &&
-          'Checking the API… the free server can take up to a minute to wake up.'}
-        {status.kind === 'up' && `API is up (v${status.version})`}
-        {status.kind === 'down' && "Can't reach the API right now. Please retry in a minute."}
-      </p>
-    </main>
+    <QueryClientProvider client={client}>
+      <BrowserRouter>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<InsightsPage />} />
+            <Route path="/employees" element={<EmployeesPage />} />
+          </Routes>
+        </Layout>
+      </BrowserRouter>
+    </QueryClientProvider>
   );
 }
