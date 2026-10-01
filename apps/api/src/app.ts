@@ -1,5 +1,6 @@
 import cors from 'cors';
 import express, { type Express } from 'express';
+import swaggerUi from 'swagger-ui-express';
 import type { Db } from './db/client';
 import { errorHandler, notFound } from './middleware/error-handler';
 import { DrizzleEmployeeRepository } from './modules/employees/employees.repository';
@@ -9,6 +10,7 @@ import { healthRouter } from './modules/health/health.router';
 import { InsightsRepository } from './modules/insights/insights.repository';
 import { insightsRouter, metaRouter } from './modules/insights/insights.router';
 import { InsightsService } from './modules/insights/insights.service';
+import { buildOpenApiDocument } from './openapi';
 
 export interface AppDeps {
   corsOrigin: string;
@@ -27,6 +29,12 @@ export function createApp(deps: AppDeps): Express {
   app.disable('x-powered-by');
   app.use(cors({ origin: deps.corsOrigin }));
   app.use(express.json({ limit: '100kb' }));
+
+  const openApi = buildOpenApiDocument(deps.version);
+  app.get('/openapi.json', (_req, res) => {
+    res.json(openApi);
+  });
+  app.use('/docs', swaggerUi.serve, swaggerUi.setup(openApi));
 
   app.use('/health', healthRouter(deps.version));
   app.use('/api/v1/employees', employeesRouter(employees));
