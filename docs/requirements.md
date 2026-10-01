@@ -13,14 +13,14 @@ Salary data for 10,000 people lives in spreadsheets. Finding, correcting and com
 
 ## Scope and features
 
-| # | Feature | Question it answers for the HR Manager |
-| --- | --- | --- |
-| F1 | Employee list: paginated, searchable (name, email), filterable (country, job title, department), sortable | "Where is this person's record?" |
-| F2 | Create, view, edit and delete an employee, with validation | "How do I keep the data correct?" |
-| F3 | Country insights: headcount, min, max, average and median salary per country | "How do we pay people in India vs the US?" |
-| F4 | Job-title insights within a country: headcount, min, max, average salary per title | "Are our engineers in Germany paid consistently?" |
-| F5 | Organisation overview: total headcount, countries, departments, salary spread per country | "What does the org look like at a glance?" |
-| F6 | Seed script that creates 10,000 realistic, repeatable employees | Demo and test data |
+| #   | Feature                                                                                                   | Question it answers for the HR Manager            |
+| --- | --------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
+| F1  | Employee list: paginated, searchable (name, email), filterable (country, job title, department), sortable | "Where is this person's record?"                  |
+| F2  | Create, view, edit and delete an employee, with validation                                                | "How do I keep the data correct?"                 |
+| F3  | Country insights: headcount, min, max, average and median salary per country                              | "How do we pay people in India vs the US?"        |
+| F4  | Job-title insights within a country: headcount, min, max, average salary per title                        | "Are our engineers in Germany paid consistently?" |
+| F5  | Organisation overview: total headcount, countries, departments, salary spread per country                 | "What does the org look like at a glance?"        |
+| F6  | Seed script that creates 10,000 realistic, repeatable employees                                           | Demo and test data                                |
 
 **Employee record:** employee code, full name, email, job title, department, country, currency, annual gross salary, employment type, hire date.
 
@@ -28,14 +28,14 @@ Salary data for 10,000 people lives in spreadsheets. Finding, correcting and com
 
 ## Deliberately out of scope (and why)
 
-| Left out | Reason |
-| --- | --- |
-| Login, roles and permissions | The brief has one persona. Auth adds time without proving the core; the API is structured so a middleware can add it later. |
-| Currency conversion | Salaries stay in local currency and insights are grouped per country, so no exchange-rate source is needed and no figure is misleading. |
-| Net salary, tax, deductions | Country tax rules are a product of their own. Gross annual salary only. |
-| Salary history | Current salary only. The schema leaves a clean path to a `salary_revisions` table. |
-| Excel/CSV import and export | High value for a real migration, but the seed script covers the brief. First item on the roadmap. |
-| Multi-organisation (tenants) | One organisation in the brief. |
+| Left out                     | Reason                                                                                                                                  |
+| ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| Login, roles and permissions | The brief has one persona. Auth adds time without proving the core; the API is structured so a middleware can add it later.             |
+| Currency conversion          | Salaries stay in local currency and insights are grouped per country, so no exchange-rate source is needed and no figure is misleading. |
+| Net salary, tax, deductions  | Country tax rules are a product of their own. Gross annual salary only.                                                                 |
+| Salary history               | Current salary only. The schema leaves a clean path to a `salary_revisions` table.                                                      |
+| Excel/CSV import and export  | High value for a real migration, but the seed script covers the brief. First item on the roadmap.                                       |
+| Multi-organisation (tenants) | One organisation in the brief.                                                                                                          |
 
 ## Assumptions
 
