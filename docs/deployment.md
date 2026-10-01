@@ -2,11 +2,11 @@
 
 Three free services: **Vercel** (web), **Render** (API), **Turso** (database). Every push to `main` redeploys the web app and the API automatically once they are connected to the GitHub repo.
 
-| Part     | Service                 | URL (fill in after first deploy)  |
-| -------- | ----------------------- | --------------------------------- |
-| Web      | Vercel Hobby            | `https://<project>.vercel.app`    |
-| API      | Render free web service | `https://salary-api.onrender.com` |
-| Database | Turso free plan         | `libsql://<db>-<org>.turso.io`    |
+| Part     | Service                 | URL (fill in after first deploy)                                               |
+| -------- | ----------------------- | ------------------------------------------------------------------------------ |
+| Web      | Vercel Hobby            | https://e-salary-management.vercel.app                                         |
+| API      | Render free web service | https://salary-api-vdsd.onrender.com                                           |
+| Database | Turso free plan         | `libsql://salary-management-sudarshan070.aws-ap-south-1.turso.io` (AWS Mumbai) |
 
 > The free Render instance sleeps after 15 minutes without traffic and needs about a minute to wake. The first request after a pause is slow; the web app shows a waking-up message meanwhile.
 
