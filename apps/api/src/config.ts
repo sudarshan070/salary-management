@@ -4,12 +4,16 @@ const envSchema = z.object({
   PORT: z.coerce.number().int().positive().default(3000),
   CORS_ORIGIN: z.string().min(1).default('*'),
   APP_VERSION: z.string().default('0.1.0'),
+  DATABASE_URL: z.string().min(1).default('file:local.db'),
+  DATABASE_AUTH_TOKEN: z.string().min(1).optional(),
 });
 
 export interface AppConfig {
   port: number;
   corsOrigin: string;
   version: string;
+  databaseUrl: string;
+  databaseAuthToken: string | undefined;
 }
 
 /** Reads and validates environment variables once, at startup. */
@@ -23,5 +27,7 @@ export function loadConfig(env: Record<string, string | undefined>): AppConfig {
     port: parsed.data.PORT,
     corsOrigin: parsed.data.CORS_ORIGIN,
     version: parsed.data.APP_VERSION,
+    databaseUrl: parsed.data.DATABASE_URL,
+    databaseAuthToken: parsed.data.DATABASE_AUTH_TOKEN,
   };
 }
